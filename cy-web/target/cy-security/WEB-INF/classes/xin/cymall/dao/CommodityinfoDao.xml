@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xin.cymall.dao.CommodityinfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="xin.cymall.entity.Commodityinfo" id="commodityinfoMap">
+        <result property="id" column="Id"/>
+        <result property="commodityid" column="CommodityId"/>
+        <result property="commodityname" column="CommodityName"/>
+        <result property="commoditytype" column="CommodityType"/>
+        <result property="uint" column="Uint"/>
+        <result property="remark" column="Remark"/>
+    </resultMap>
+
+	<select id="get" resultType="xin.cymall.entity.Commodityinfo">
+		select * from commodityinfo where Id = #{value}
+	</select>
+
+	<select id="getList" resultType="xin.cymall.entity.Commodityinfo">
+		select * from commodityinfo t <include refid="where_clause" />
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by Id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="getCount" resultType="int">
+		select count(*) from commodityinfo t  <include refid="where_clause" />
+	</select>
+
+    <!-- 搜索数据区域 -->
+    <sql id="where_clause">
+        <where>
+            1=1
+            <if test="id != null and id != ''"> and t.Id = #{id} </if>
+    		<if test="idVague != null and idVague != ''"> and t.Id like concat('%',#{idVague},'%') </if>
+            <if test="commodityid != null and commodityid != ''"> and t.CommodityId = #{commodityid} </if>
+    		<if test="commodityidVague != null and commodityidVague != ''"> and t.CommodityId like concat('%',#{commodityidVague},'%') </if>
+            <if test="commodityname != null and commodityname != ''"> and t.CommodityName = #{commodityname} </if>
+    		<if test="commoditynameVague != null and commoditynameVague != ''"> and t.CommodityName like concat('%',#{commoditynameVague},'%') </if>
+            <if test="commoditytype != null and commoditytype != ''"> and t.CommodityType = #{commoditytype} </if>
+    		<if test="commoditytypeVague != null and commoditytypeVague != ''"> and t.CommodityType like concat('%',#{commoditytypeVague},'%') </if>
+            <if test="uint != null and uint != ''"> and t.Uint = #{uint} </if>
+    		<if test="uintVague != null and uintVague != ''"> and t.Uint like concat('%',#{uintVague},'%') </if>
+            <if test="remark != null and remark != ''"> and t.Remark = #{remark} </if>
+    		<if test="remarkVague != null and remarkVague != ''"> and t.Remark like concat('%',#{remarkVague},'%') </if>
+        </where>
+    </sql>
+	 
+	<insert id="save" parameterType="xin.cymall.entity.Commodityinfo">
+		insert into commodityinfo
+		(
+			`Id`, 
+			`CommodityId`, 
+			`CommodityName`, 
+			`CommodityType`, 
+			`Uint`, 
+			`Remark`
+		)
+		values
+		(
+			#{id}, 
+			#{commodityid}, 
+			#{commodityname}, 
+			#{commoditytype}, 
+			#{uint}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="xin.cymall.entity.Commodityinfo">
+		update commodityinfo 
+		<set>
+			<if test="commodityid != null">`CommodityId` = #{commodityid}, </if>
+			<if test="commodityname != null">`CommodityName` = #{commodityname}, </if>
+			<if test="commoditytype != null">`CommodityType` = #{commoditytype}, </if>
+			<if test="uint != null">`Uint` = #{uint}, </if>
+			<if test="remark != null">`Remark` = #{remark}</if>
+		</set>
+		where Id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from commodityinfo where Id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from commodityinfo where Id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

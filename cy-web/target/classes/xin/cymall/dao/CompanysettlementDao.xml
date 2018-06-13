@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xin.cymall.dao.CompanysettlementDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="xin.cymall.entity.Companysettlement" id="companysettlementMap">
+        <result property="comsetId" column="comSet_id"/>
+        <result property="companyId" column="company_id"/>
+        <result property="commodityId" column="commodity_id"/>
+        <result property="outputnum" column="outputNum"/>
+        <result property="inputapplyId" column="inputApply_id"/>
+        <result property="outputapplyId" column="outputApply_id"/>
+        <result property="intputDate" column="intput_date"/>
+        <result property="outputDate" column="output_date"/>
+        <result property="depositDays" column="deposit_days"/>
+        <result property="basicrentId" column="basicRent_id"/>
+        <result property="raiserentId" column="raiseRent_id"/>
+        <result property="settlementStatus" column="Settlement_status"/>
+        <result property="totalMoney" column="total_money"/>
+        <result property="paidMoney" column="paid_money"/>
+        <result property="unpidMoney" column="unpid_money"/>
+        <result property="loadingcost" column="loadingCost"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+	<select id="get" resultType="xin.cymall.entity.Companysettlement">
+		select * from companysettlement where comSet_id = #{value}
+	</select>
+
+	<select id="getList" resultType="xin.cymall.entity.Companysettlement">
+		select * from companysettlement t <include refid="where_clause" />
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by comSet_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="getCount" resultType="int">
+		select count(*) from companysettlement t  <include refid="where_clause" />
+	</select>
+
+    <!-- 搜索数据区域 -->
+    <sql id="where_clause">
+        <where>
+            1=1
+            <if test="comsetId != null and comsetId != ''"> and t.comSet_id = #{comsetId} </if>
+    		<if test="comsetIdVague != null and comsetIdVague != ''"> and t.comSet_id like concat('%',#{comsetIdVague},'%') </if>
+            <if test="companyId != null and companyId != ''"> and t.company_id = #{companyId} </if>
+    		<if test="companyIdVague != null and companyIdVague != ''"> and t.company_id like concat('%',#{companyIdVague},'%') </if>
+            <if test="commodityId != null and commodityId != ''"> and t.commodity_id = #{commodityId} </if>
+    		<if test="commodityIdVague != null and commodityIdVague != ''"> and t.commodity_id like concat('%',#{commodityIdVague},'%') </if>
+            <if test="outputnum != null and outputnum != ''"> and t.outputNum = #{outputnum} </if>
+    		<if test="outputnumVague != null and outputnumVague != ''"> and t.outputNum like concat('%',#{outputnumVague},'%') </if>
+            <if test="inputapplyId != null and inputapplyId != ''"> and t.inputApply_id = #{inputapplyId} </if>
+    		<if test="inputapplyIdVague != null and inputapplyIdVague != ''"> and t.inputApply_id like concat('%',#{inputapplyIdVague},'%') </if>
+            <if test="outputapplyId != null and outputapplyId != ''"> and t.outputApply_id = #{outputapplyId} </if>
+    		<if test="outputapplyIdVague != null and outputapplyIdVague != ''"> and t.outputApply_id like concat('%',#{outputapplyIdVague},'%') </if>
+            <if test="intputDate != null and intputDate != ''"> and t.intput_date = #{intputDate} </if>
+    		<if test="intputDateVague != null and intputDateVague != ''"> and t.intput_date like concat('%',#{intputDateVague},'%') </if>
+            <if test="outputDate != null and outputDate != ''"> and t.output_date = #{outputDate} </if>
+    		<if test="outputDateVague != null and outputDateVague != ''"> and t.output_date like concat('%',#{outputDateVague},'%') </if>
+            <if test="depositDays != null and depositDays != ''"> and t.deposit_days = #{depositDays} </if>
+    		<if test="depositDaysVague != null and depositDaysVague != ''"> and t.deposit_days like concat('%',#{depositDaysVague},'%') </if>
+            <if test="basicrentId != null and basicrentId != ''"> and t.basicRent_id = #{basicrentId} </if>
+    		<if test="basicrentIdVague != null and basicrentIdVague != ''"> and t.basicRent_id like concat('%',#{basicrentIdVague},'%') </if>
+            <if test="raiserentId != null and raiserentId != ''"> and t.raiseRent_id = #{raiserentId} </if>
+    		<if test="raiserentIdVague != null and raiserentIdVague != ''"> and t.raiseRent_id like concat('%',#{raiserentIdVague},'%') </if>
+            <if test="settlementStatus != null and settlementStatus != ''"> and t.Settlement_status = #{settlementStatus} </if>
+    		<if test="settlementStatusVague != null and settlementStatusVague != ''"> and t.Settlement_status like concat('%',#{settlementStatusVague},'%') </if>
+            <if test="totalMoney != null and totalMoney != ''"> and t.total_money = #{totalMoney} </if>
+    		<if test="totalMoneyVague != null and totalMoneyVague != ''"> and t.total_money like concat('%',#{totalMoneyVague},'%') </if>
+            <if test="paidMoney != null and paidMoney != ''"> and t.paid_money = #{paidMoney} </if>
+    		<if test="paidMoneyVague != null and paidMoneyVague != ''"> and t.paid_money like concat('%',#{paidMoneyVague},'%') </if>
+            <if test="unpidMoney != null and unpidMoney != ''"> and t.unpid_money = #{unpidMoney} </if>
+    		<if test="unpidMoneyVague != null and unpidMoneyVague != ''"> and t.unpid_money like concat('%',#{unpidMoneyVague},'%') </if>
+            <if test="loadingcost != null and loadingcost != ''"> and t.loadingCost = #{loadingcost} </if>
+    		<if test="loadingcostVague != null and loadingcostVague != ''"> and t.loadingCost like concat('%',#{loadingcostVague},'%') </if>
+            <if test="remark != null and remark != ''"> and t.remark = #{remark} </if>
+    		<if test="remarkVague != null and remarkVague != ''"> and t.remark like concat('%',#{remarkVague},'%') </if>
+        </where>
+    </sql>
+	 
+	<insert id="save" parameterType="xin.cymall.entity.Companysettlement" useGeneratedKeys="true" keyProperty="comsetId">
+		insert into companysettlement
+		(
+			`company_id`, 
+			`commodity_id`, 
+			`outputNum`, 
+			`inputApply_id`, 
+			`outputApply_id`, 
+			`intput_date`, 
+			`output_date`, 
+			`deposit_days`, 
+			`basicRent_id`, 
+			`raiseRent_id`, 
+			`Settlement_status`, 
+			`total_money`, 
+			`paid_money`, 
+			`unpid_money`, 
+			`loadingCost`, 
+			`remark`
+		)
+		values
+		(
+			#{companyId}, 
+			#{commodityId}, 
+			#{outputnum}, 
+			#{inputapplyId}, 
+			#{outputapplyId}, 
+			#{intputDate}, 
+			#{outputDate}, 
+			#{depositDays}, 
+			#{basicrentId}, 
+			#{raiserentId}, 
+			#{settlementStatus}, 
+			#{totalMoney}, 
+			#{paidMoney}, 
+			#{unpidMoney}, 
+			#{loadingcost}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="xin.cymall.entity.Companysettlement">
+		update companysettlement 
+		<set>
+			<if test="companyId != null">`company_id` = #{companyId}, </if>
+			<if test="commodityId != null">`commodity_id` = #{commodityId}, </if>
+			<if test="outputnum != null">`outputNum` = #{outputnum}, </if>
+			<if test="inputapplyId != null">`inputApply_id` = #{inputapplyId}, </if>
+			<if test="outputapplyId != null">`outputApply_id` = #{outputapplyId}, </if>
+			<if test="intputDate != null">`intput_date` = #{intputDate}, </if>
+			<if test="outputDate != null">`output_date` = #{outputDate}, </if>
+			<if test="depositDays != null">`deposit_days` = #{depositDays}, </if>
+			<if test="basicrentId != null">`basicRent_id` = #{basicrentId}, </if>
+			<if test="raiserentId != null">`raiseRent_id` = #{raiserentId}, </if>
+			<if test="settlementStatus != null">`Settlement_status` = #{settlementStatus}, </if>
+			<if test="totalMoney != null">`total_money` = #{totalMoney}, </if>
+			<if test="paidMoney != null">`paid_money` = #{paidMoney}, </if>
+			<if test="unpidMoney != null">`unpid_money` = #{unpidMoney}, </if>
+			<if test="loadingcost != null">`loadingCost` = #{loadingcost}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where comSet_id = #{comsetId}
+	</update>
+	
+	<delete id="delete">
+		delete from companysettlement where comSet_id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from companysettlement where comSet_id in 
+		<foreach item="comsetId" collection="array" open="(" separator="," close=")">
+			#{comsetId}
+		</foreach>
+	</delete>
+
+</mapper>

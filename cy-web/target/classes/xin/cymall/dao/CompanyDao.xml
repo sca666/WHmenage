@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xin.cymall.dao.CompanyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="xin.cymall.entity.Company" id="companyMap">
+        <result property="companyId" column="company_id"/>
+        <result property="companyCode" column="company_code"/>
+        <result property="companyName" column="company_name"/>
+        <result property="contacts" column="contacts"/>
+        <result property="telephone" column="telephone"/>
+        <result property="roleId" column="role_id"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+	<select id="get" resultType="xin.cymall.entity.Company">
+		select * from company where company_id = #{value}
+	</select>
+
+	<select id="getList" resultType="xin.cymall.entity.Company">
+		select * from company t <include refid="where_clause" />
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by company_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="getCount" resultType="int">
+		select count(*) from company t  <include refid="where_clause" />
+	</select>
+
+    <!-- 搜索数据区域 -->
+    <sql id="where_clause">
+        <where>
+            1=1
+            <if test="companyId != null and companyId != ''"> and t.company_id = #{companyId} </if>
+    		<if test="companyIdVague != null and companyIdVague != ''"> and t.company_id like concat('%',#{companyIdVague},'%') </if>
+            <if test="companyCode != null and companyCode != ''"> and t.company_code = #{companyCode} </if>
+    		<if test="companyCodeVague != null and companyCodeVague != ''"> and t.company_code like concat('%',#{companyCodeVague},'%') </if>
+            <if test="companyName != null and companyName != ''"> and t.company_name = #{companyName} </if>
+    		<if test="companyNameVague != null and companyNameVague != ''"> and t.company_name like concat('%',#{companyNameVague},'%') </if>
+            <if test="contacts != null and contacts != ''"> and t.contacts = #{contacts} </if>
+    		<if test="contactsVague != null and contactsVague != ''"> and t.contacts like concat('%',#{contactsVague},'%') </if>
+            <if test="telephone != null and telephone != ''"> and t.telephone = #{telephone} </if>
+    		<if test="telephoneVague != null and telephoneVague != ''"> and t.telephone like concat('%',#{telephoneVague},'%') </if>
+            <if test="roleId != null and roleId != ''"> and t.role_id = #{roleId} </if>
+    		<if test="roleIdVague != null and roleIdVague != ''"> and t.role_id like concat('%',#{roleIdVague},'%') </if>
+            <if test="remark != null and remark != ''"> and t.remark = #{remark} </if>
+    		<if test="remarkVague != null and remarkVague != ''"> and t.remark like concat('%',#{remarkVague},'%') </if>
+        </where>
+    </sql>
+	 
+	<insert id="save" parameterType="xin.cymall.entity.Company" useGeneratedKeys="true" keyProperty="companyId">
+		insert into company
+		(
+			`company_code`, 
+			`company_name`, 
+			`contacts`, 
+			`telephone`, 
+			`role_id`, 
+			`remark`
+		)
+		values
+		(
+			#{companyCode}, 
+			#{companyName}, 
+			#{contacts}, 
+			#{telephone}, 
+			#{roleId}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="xin.cymall.entity.Company">
+		update company 
+		<set>
+			<if test="companyCode != null">`company_code` = #{companyCode}, </if>
+			<if test="companyName != null">`company_name` = #{companyName}, </if>
+			<if test="contacts != null">`contacts` = #{contacts}, </if>
+			<if test="telephone != null">`telephone` = #{telephone}, </if>
+			<if test="roleId != null">`role_id` = #{roleId}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where company_id = #{companyId}
+	</update>
+	
+	<delete id="delete">
+		delete from company where company_id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from company where company_id in 
+		<foreach item="companyId" collection="array" open="(" separator="," close=")">
+			#{companyId}
+		</foreach>
+	</delete>
+
+</mapper>

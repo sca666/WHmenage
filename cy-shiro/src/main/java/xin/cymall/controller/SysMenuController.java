@@ -59,7 +59,7 @@ public class SysMenuController extends AbstractController {
     public R select() {
         //查询列表数据
         List<SysMenu> menuList = sysMenuService.queryNotButtonList();
-
+        System.out.println("test");
         //添加顶级菜单
         SysMenu root = new SysMenu();
         root.setMenuId(Long.parseLong(TopMenuEnum.TopMenu.getCode()));
@@ -227,14 +227,11 @@ public class SysMenuController extends AbstractController {
     @RequiresPermissions("sys:menu:update")
     @RedisEvict(type=SysMenu.class)
     public R update(@RequestBody SysMenu menu) {
-
-
-        System.out.println("update begin!");
         //数据校验
         verifyForm(menu);
 
         sysMenuService.update(menu);
-        System.out.println("update end!");
+
         return R.ok();
     }
 

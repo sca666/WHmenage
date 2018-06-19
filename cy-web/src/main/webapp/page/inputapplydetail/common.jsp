@@ -70,9 +70,5 @@
                 <input type="text"  name="remark" maxlength="200"  value="${model.remark}" lay-verify="required" placeholder="请输入备注"  class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <button>
-            <link rel="alternate" href="/page/test.jsp" > 哈</button>
-        </div>
 
 

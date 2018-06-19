@@ -69,7 +69,7 @@
 			            			
 		          <th width="10%" param="{name:'planinputnum'}">计划入库数量</th>
 			            			
-		          <th width="10%" param="{name:'actualinputnum`actualinputnum'}">实际已入库数量</th>
+		          <th width="10%" param="{name:'actualinputnum'}">实际已入库数量</th>
 			            			
 		          <th width="10%" param="{name:'allocainputnum'}">调单入库数量</th>
 			            			

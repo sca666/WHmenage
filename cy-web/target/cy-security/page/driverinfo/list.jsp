@@ -36,12 +36,6 @@
         <button class="layui-btn" onclick="editPage('commparaTable','/driverinfo/edit')">
             <i class="fa fa-pencil-square-o">&nbsp;</i>修改
         </button>
-         <button class="layui-btn layui-btn-green" onclick="updateState('批量启用','driverinfoTable','/driverinfo/enable')">
-            <i class="fa fa-check-square-o">&nbsp;</i>启用
-        </button>
-        <button class="layui-btn  layui-btn-danger" onclick="updateState('批量禁用','driverinfoTable','/driverinfo/limit')">
-            <i class="fa fa-expeditedssl">&nbsp;</i>禁用
-        </button>
         </shiro:hasPermission>
         <shiro:hasPermission name="driverinfo:delete">
          <button class="layui-btn layui-btn-delete" onclick="deleteBatch('批量删除','driverinfoTable','/driverinfo/delete');">
@@ -71,7 +65,6 @@
 			            			
 		          <th width="10%" param="{name:'remark'}">备注</th>
 			                        <!--isPrimary：渲染列-->
-            <th width="10%" param="{name:'state',enumName:'StateEnum',render:'Render.customState'}">状态</th>
             <th width="10%" param="{operate:'true',buttons:'Render.state,Render.edit,Render.delete'}">操作</th>
         </tr>
         </thead>

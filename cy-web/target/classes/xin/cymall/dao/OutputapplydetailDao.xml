@@ -9,7 +9,7 @@
         <result property="outputapplymainId" column="outputApplyMain_id"/>
         <result property="commodityId" column="commodity_id"/>
         <result property="planoutputnum" column="planOutputNum"/>
-        <result property="actualoutputnum`actualinputnum" column="actualOutputNum`actualInputNum"/>
+        <result property="actualoutputnum" column="actualOutputNum"/>
         <result property="allocaoutputnum" column="allocaOutputNum"/>
         <result property="notoutputnum" column="notOutputNum"/>
         <result property="unitId" column="unit_id"/>
@@ -52,8 +52,8 @@
     		<if test="commodityIdVague != null and commodityIdVague != ''"> and t.commodity_id like concat('%',#{commodityIdVague},'%') </if>
             <if test="planoutputnum != null and planoutputnum != ''"> and t.planOutputNum = #{planoutputnum} </if>
     		<if test="planoutputnumVague != null and planoutputnumVague != ''"> and t.planOutputNum like concat('%',#{planoutputnumVague},'%') </if>
-            <if test="actualoutputnum`actualinputnum != null and actualoutputnum`actualinputnum != ''"> and t.actualOutputNum`actualInputNum = #{actualoutputnum`actualinputnum} </if>
-    		<if test="actualoutputnum`actualinputnumVague != null and actualoutputnum`actualinputnumVague != ''"> and t.actualOutputNum`actualInputNum like concat('%',#{actualoutputnum`actualinputnumVague},'%') </if>
+            <if test="actualoutputnum != null and actualoutputnum != ''"> and t.actualOutputNum = #{actualoutputnum} </if>
+    		<if test="actualoutputnum != null and actualoutputnum != ''"> and t.actualOutputNum like concat('%',#{actualoutputnum},'%') </if>
             <if test="allocaoutputnum != null and allocaoutputnum != ''"> and t.allocaOutputNum = #{allocaoutputnum} </if>
     		<if test="allocaoutputnumVague != null and allocaoutputnumVague != ''"> and t.allocaOutputNum like concat('%',#{allocaoutputnumVague},'%') </if>
             <if test="notoutputnum != null and notoutputnum != ''"> and t.notOutputNum = #{notoutputnum} </if>
@@ -73,7 +73,7 @@
 			`outputApplyMain_id`, 
 			`commodity_id`, 
 			`planOutputNum`, 
-			`actualOutputNum`actualInputNum`, 
+			`actualOutputNum`,
 			`allocaOutputNum`, 
 			`notOutputNum`, 
 			`unit_id`, 
@@ -85,7 +85,7 @@
 			#{outputapplymainId}, 
 			#{commodityId}, 
 			#{planoutputnum}, 
-			#{actualoutputnum`actualinputnum}, 
+			#{actualoutputnum},
 			#{allocaoutputnum}, 
 			#{notoutputnum}, 
 			#{unitId}, 
@@ -100,7 +100,7 @@
 			<if test="outputapplymainId != null">`outputApplyMain_id` = #{outputapplymainId}, </if>
 			<if test="commodityId != null">`commodity_id` = #{commodityId}, </if>
 			<if test="planoutputnum != null">`planOutputNum` = #{planoutputnum}, </if>
-			<if test="actualoutputnum`actualinputnum != null">`actualOutputNum`actualInputNum` = #{actualoutputnum`actualinputnum}, </if>
+			<if test="actualoutputnum != null">`actualOutputNum` = #{actualoutputnum}, </if>
 			<if test="allocaoutputnum != null">`allocaOutputNum` = #{allocaoutputnum}, </if>
 			<if test="notoutputnum != null">`notOutputNum` = #{notoutputnum}, </if>
 			<if test="unitId != null">`unit_id` = #{unitId}, </if>

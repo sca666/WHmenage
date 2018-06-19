@@ -1,7 +1,12 @@
 package xin.cymall.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import xin.cymall.entity.Area;
+import xin.cymall.entity.SysMenu;
 import xin.cymall.enumresource.StateEnum;
 import xin.cymall.annotation.SysLog;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,10 +17,10 @@ import org.springframework.stereotype.Controller;
 import javax.servlet.http.HttpServletRequest;
 
 import xin.cymall.entity.Customer;
+import xin.cymall.enumresource.TopMenuEnum;
+import xin.cymall.enumresource.WhetherEnum;
 import xin.cymall.service.CustomerService;
-import xin.cymall.utils.PageUtils;
-import xin.cymall.utils.Query;
-import xin.cymall.utils.R;
+import xin.cymall.utils.*;
 
 
 /**
@@ -143,5 +148,33 @@ public class CustomerController {
 		
 		return R.ok();
 	}
-	
+
+
+    /**
+     * 获取下级地区
+     */
+    @ResponseBody
+//    @RequiresPermissions("area:list")
+    @RequestMapping("normalList")
+    public R normalList (){
+        List<EnumBean> list = new ArrayList<>();
+//        HashMap<String, Object> paraMap = new HashMap<String, Object>();
+//        paraMap.put("parentAreaId", parentAreaId);
+//        paraMap.put("state", WhetherEnum.YES.getCode());
+        List<Customer> areaList = customerService.getList2();
+
+        if (areaList != null && areaList.size() > 0) {
+            for (int i = 0; i < areaList.size(); i++) {
+                EnumBean bean = new EnumBean();
+                bean.setCode(areaList.get(i).getId());
+                bean.setValue(areaList.get(i).getName());
+                list.add(bean);
+            }
+        }
+        return R.ok().put("data", list);
+    }
+
+
+
+
 }

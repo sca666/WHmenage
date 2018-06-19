@@ -17,6 +17,8 @@ public interface CustomerService {
 	Customer get(String id);
 	
 	List<Customer> getList(Map<String, Object> map);
+
+	List<Customer> getList2();
 	
 	int getCount(Map<String, Object> map);
 	

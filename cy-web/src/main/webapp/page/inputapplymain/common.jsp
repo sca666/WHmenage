@@ -20,9 +20,21 @@
         </div>
               <div class="layui-form-item">
             <label class="layui-form-label">公司id<span class="span_must">*</span></label>
-            <div class="layui-input-normal">
+
+                  <div cyType="selectTool" cyProps="url:'/customer/normalList',search:'true',filter:'demo'"
+                       name="companyId" value="0" class="layui-input-inline"></div>
+
+                  <%--
+                  <div class="layui-input-normal">
+                  <input value=""  id="parent" cyType="treeTool"  lay-verify="required"
+                         cyProps="url:'/sys/menu/select',name:'parentId'"
+                         placeholder="请选择上级菜单" class="layui-input"/>
+                  </div>
+                  --&>
+            <%--<div class="layui-input-normal">
                 <input type="text"  name="companyId" maxlength="100"  value="${model.companyId}" lay-verify="required" placeholder="请输入公司id"  class="layui-input">
             </div>
+            --%>
         </div>
               <div class="layui-form-item">
             <label class="layui-form-label">录单人id<span class="span_must">*</span></label>

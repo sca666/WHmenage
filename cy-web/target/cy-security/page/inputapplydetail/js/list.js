@@ -5,8 +5,11 @@
  * @date 2018-06-12 16:50:11
  */
 
+
 /**数据渲染对象*/
 var Render = {
+
+
     /**
      * 上移
      * @param primary   主键id
@@ -33,7 +36,7 @@ var Render = {
      */
     customState: function (rowdata,renderData, index, value) {
         if(value == "启用"){
-            return '<span style="color:green">'+value+'</span>';
+            return '<span style="color:#008000">'+value+'</span>';
         }
         if(value == "禁用"){
             return '<span style="color:red">'+value+'</span>';

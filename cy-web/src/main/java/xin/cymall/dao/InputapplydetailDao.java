@@ -10,5 +10,7 @@ import xin.cymall.entity.Inputapplydetail;
  * @date 2018-06-13 10:36:04
  */
 public interface InputapplydetailDao extends BaseDao<Inputapplydetail> {
+
+
 	
 }

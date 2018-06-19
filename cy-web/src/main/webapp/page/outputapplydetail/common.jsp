@@ -33,7 +33,7 @@
               <div class="layui-form-item">
             <label class="layui-form-label">实际已出库数量<span class="span_must">*</span></label>
             <div class="layui-input-normal">
-                <input type="text"  name="actualoutputnum`actualinputnum" maxlength="10,3"  value="${model.actualoutputnum`actualinputnum}" lay-verify="required" placeholder="请输入实际已出库数量"  class="layui-input">
+                <input type="text"  name="actualoutputnum" maxlength="10,3"  value="${model.actualoutputnum}" lay-verify="required" placeholder="请输入实际已出库数量"  class="layui-input">
             </div>
         </div>
               <div class="layui-form-item">

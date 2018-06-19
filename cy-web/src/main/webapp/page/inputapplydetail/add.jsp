@@ -9,6 +9,7 @@
 <head>
     <title>Title</title>
     <%@ include file="/common/jsp/resource.jsp" %>
+
 </head>
 <body>
 <div class="layui-field-box">

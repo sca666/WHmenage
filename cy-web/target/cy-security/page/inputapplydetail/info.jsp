@@ -31,7 +31,7 @@
         </div>
               <div class="layui-form-item">
             <label class="layui-label-left">实际已入库数量<span class="label_span">:</span></label>
-            <label class="layui-label-right">${model.actualinputnum`actualinputnum}</label>
+            <label class="layui-label-right">${model.actualinputnum}</label>
         </div>
               <div class="layui-form-item">
             <label class="layui-label-left">调单入库数量<span class="label_span">:</span></label>

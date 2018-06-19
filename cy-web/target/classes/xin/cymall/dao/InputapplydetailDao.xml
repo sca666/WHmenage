@@ -9,7 +9,7 @@
         <result property="intputapplymainId" column="intputApplyMain_id"/>
         <result property="commodityId" column="commodity_id"/>
         <result property="planinputnum" column="planInputNum"/>
-        <result property="actualinputnum`actualinputnum" column="actualInputNum`actualInputNum"/>
+        <result property="actualinputnum" column="actualInputNum"/>
         <result property="allocainputnum" column="allocaInputNum"/>
         <result property="notinputnum" column="notInputNum"/>
         <result property="unitId" column="unit_id"/>
@@ -34,6 +34,7 @@
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
+
 	</select>
 	
  	<select id="getCount" resultType="int">
@@ -44,7 +45,7 @@
     <sql id="where_clause">
         <where>
             1=1
-            <if test="inputapplydetailId != null and inputapplydetailId != ''"> and t.inputApplyDetail_id = #{inputapplydetailId} </if>
+            <if test="inputapplydetailId != null and inputapplydetailId != ''"> and t.inputApplyDetail_id = #{inputapplydetailId}  </if>
     		<if test="inputapplydetailIdVague != null and inputapplydetailIdVague != ''"> and t.inputApplyDetail_id like concat('%',#{inputapplydetailIdVague},'%') </if>
             <if test="intputapplymainId != null and intputapplymainId != ''"> and t.intputApplyMain_id = #{intputapplymainId} </if>
     		<if test="intputapplymainIdVague != null and intputapplymainIdVague != ''"> and t.intputApplyMain_id like concat('%',#{intputapplymainIdVague},'%') </if>
@@ -52,8 +53,8 @@
     		<if test="commodityIdVague != null and commodityIdVague != ''"> and t.commodity_id like concat('%',#{commodityIdVague},'%') </if>
             <if test="planinputnum != null and planinputnum != ''"> and t.planInputNum = #{planinputnum} </if>
     		<if test="planinputnumVague != null and planinputnumVague != ''"> and t.planInputNum like concat('%',#{planinputnumVague},'%') </if>
-            <if test="actualinputnum`actualinputnum != null and actualinputnum`actualinputnum != ''"> and t.actualInputNum`actualInputNum = #{actualinputnum`actualinputnum} </if>
-    		<if test="actualinputnum`actualinputnumVague != null and actualinputnum`actualinputnumVague != ''"> and t.actualInputNum`actualInputNum like concat('%',#{actualinputnum`actualinputnumVague},'%') </if>
+            <if test="actualinputnum != null and actualinputnum != ''"> and t.actualInputNum = #{actualinputnum} </if>
+    		<if test="actualinputnum != null and actualinputnum != ''"> and t.actualInputNum like concat('%',#{actualinputnum},'%') </if>
             <if test="allocainputnum != null and allocainputnum != ''"> and t.allocaInputNum = #{allocainputnum} </if>
     		<if test="allocainputnumVague != null and allocainputnumVague != ''"> and t.allocaInputNum like concat('%',#{allocainputnumVague},'%') </if>
             <if test="notinputnum != null and notinputnum != ''"> and t.notInputNum = #{notinputnum} </if>
@@ -73,7 +74,7 @@
 			`intputApplyMain_id`, 
 			`commodity_id`, 
 			`planInputNum`, 
-			`actualInputNum`actualInputNum`, 
+			`actualInputNum`,
 			`allocaInputNum`, 
 			`notInputNum`, 
 			`unit_id`, 
@@ -82,15 +83,18 @@
 		)
 		values
 		(
+
+
 			#{intputapplymainId}, 
 			#{commodityId}, 
 			#{planinputnum}, 
-			#{actualinputnum`actualinputnum}, 
+			#{actualinputnum},
 			#{allocainputnum}, 
 			#{notinputnum}, 
 			#{unitId}, 
 			#{inputDate}, 
 			#{remark}
+
 		)
 	</insert>
 	 
@@ -100,7 +104,7 @@
 			<if test="intputapplymainId != null">`intputApplyMain_id` = #{intputapplymainId}, </if>
 			<if test="commodityId != null">`commodity_id` = #{commodityId}, </if>
 			<if test="planinputnum != null">`planInputNum` = #{planinputnum}, </if>
-			<if test="actualinputnum`actualinputnum != null">`actualInputNum`actualInputNum` = #{actualinputnum`actualinputnum}, </if>
+			<if test="actualinputnum != null">`actualInputNum` = #{actualinputnum}, </if>
 			<if test="allocainputnum != null">`allocaInputNum` = #{allocainputnum}, </if>
 			<if test="notinputnum != null">`notInputNum` = #{notinputnum}, </if>
 			<if test="unitId != null">`unit_id` = #{unitId}, </if>

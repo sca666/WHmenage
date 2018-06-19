@@ -31,7 +31,9 @@
 	<select id="get" resultType="xin.cymall.entity.Customer">
 		select * from t_customer where id = #{value}
 	</select>
-
+	<select id="getList2" resultType="xin.cymall.entity.Customer">
+		select * from t_customer
+	</select>
 	<select id="getList" resultType="xin.cymall.entity.Customer">
 		select * from t_customer t <include refid="where_clause" />
         <choose>

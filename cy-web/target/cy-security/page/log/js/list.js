@@ -15,6 +15,7 @@ layui.use('laydate', function(){
         }
     };
 
+
     var end = {
         max: '2099-06-16 23:59:59'
         ,istoday: false
@@ -31,6 +32,7 @@ layui.use('laydate', function(){
         end.elem = this
         laydate(end);
     };
+
 
 });
 

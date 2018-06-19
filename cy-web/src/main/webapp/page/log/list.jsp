@@ -11,6 +11,7 @@
     <title>操作日志</title>
     <%@ include file="/common/jsp/resource.jsp" %>
     <script type="text/javascript" src="/page/log/js/list.js"></script>
+
 </head>
 <body>
 <form class="layui-form " action="">

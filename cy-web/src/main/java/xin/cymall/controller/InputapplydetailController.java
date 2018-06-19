@@ -38,14 +38,17 @@ public class InputapplydetailController {
 	@RequestMapping("/list")
 	@RequiresPermissions("inputapplydetail:list")
 	public R list(@RequestParam Map<String, Object> params){
+        System.out.println(" apply in!");
+
+
 		//查询列表数据
         Query query = new Query(params);
-
 		List<Inputapplydetail> inputapplydetailList = inputapplydetailService.getList(query);
+        System.out.println(" apply out---+++-------+++++--!");
 		int total = inputapplydetailService.getCount(query);
 		
 		PageUtils pageUtil = new PageUtils(inputapplydetailList, total, query.getLimit(), query.getPage());
-		
+        System.out.println(" apply out------------------!");
 		return R.ok().put("page", pageUtil);
 	}
 
@@ -55,6 +58,8 @@ public class InputapplydetailController {
     @RequestMapping("/add")
     @RequiresPermissions("inputapplydetail:save")
     public String add(){
+
+        System.out.println("jump into add.jsp-----------------!");
         return "inputapplydetail/add.jsp";
     }
 
@@ -88,8 +93,14 @@ public class InputapplydetailController {
 	@RequestMapping("/save")
 	@RequiresPermissions("inputapplydetail:save")
 	public R save(@RequestBody Inputapplydetail inputapplydetail){
+        System.out.println("begin----------------------------");
+        System.out.println("Actualinputnum:"+inputapplydetail.getActualinputnum());
+        System.out.println("Allocainputnum:"+inputapplydetail.getAllocainputnum());
+        System.out.println("getCommodityId:"+inputapplydetail.getCommodityId());
+        System.out.println("getNotinputnum:"+inputapplydetail.getNotinputnum());
+        System.out.println("end----------------------------");
 		inputapplydetailService.save(inputapplydetail);
-		
+        System.out.println("OK----------------------------");
 		return R.ok();
 	}
 	

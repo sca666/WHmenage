@@ -5,6 +5,7 @@
 * @date 2018-06-12 16:50:11
 *-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" src="/page/log/js/list.js"></script>
 
                  <div class="layui-form-item">
             <label class="layui-form-label">主键ID<span class="span_must">*</span></label>
@@ -33,7 +34,7 @@
               <div class="layui-form-item">
             <label class="layui-form-label">实际已入库数量<span class="span_must">*</span></label>
             <div class="layui-input-normal">
-                <input type="text"  name="actualinputnum`actualinputnum" maxlength="10,3"  value="${model.actualinputnum`actualinputnum}" lay-verify="required" placeholder="请输入实际已入库数量"  class="layui-input">
+                <input type="text"  name="actualinputnum" maxlength="10,3"  value="${model.actualinputnum}" lay-verify="required" placeholder="请输入实际已入库数量"  class="layui-input">
             </div>
         </div>
               <div class="layui-form-item">
@@ -56,8 +57,11 @@
         </div>
               <div class="layui-form-item">
             <label class="layui-form-label">录单时间<span class="span_must">*</span></label>
-            <div class="layui-input-normal">
-                <input type="text"  name="inputDate" maxlength="20"  value="${model.inputDate}" lay-verify="required" placeholder="请输入录单时间"  class="layui-input">
+            <div class="layui-input-inline">
+
+
+
+                <input   class="layui-input" id="LAY_demorange_s" name="inputDate"   value="${model.inputDate}" lay-verify="required" placeholder="请输入录单时间"  >
             </div>
         </div>
               <div class="layui-form-item">
@@ -66,4 +70,9 @@
                 <input type="text"  name="remark" maxlength="200"  value="${model.remark}" lay-verify="required" placeholder="请输入备注"  class="layui-input">
             </div>
         </div>
-      
+        <div class="layui-form-item">
+            <button>
+            <link rel="alternate" href="/page/test.jsp" > 哈</button>
+        </div>
+
+

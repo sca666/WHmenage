@@ -72,7 +72,8 @@ public class Customer implements Serializable {
 	}
 	/**
 	 * 设置：客户分类id
-	 */
+     * @param categoryId
+     */
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}

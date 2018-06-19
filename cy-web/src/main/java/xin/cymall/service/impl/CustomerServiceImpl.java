@@ -30,6 +30,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public List<Customer> getList2() {
+
+		return customerDao.getList2();
+	}
+
+	@Override
 	public int getCount(Map<String, Object> map){
 		return customerDao.getCount(map);
 	}
